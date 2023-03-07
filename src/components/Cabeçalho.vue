@@ -30,9 +30,11 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
     section {
         display: flex;
+        width: 100%;
+        height: 7vh;
         align-items: center;
         font-family: Arial, Helvetica, sans-serif;
         padding: 0.5%;
