@@ -12,6 +12,9 @@ export default {
     components: {
       Cabeçalho,
       Login
+    },
+    mounted () {
+      console.log(this.$firebase)
     }
 }
 </script>
