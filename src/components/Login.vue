@@ -8,13 +8,12 @@
 
           <div class="cadastreInput">
             
-            <input type="text" placeholder="Nome de Usuario">
-            <input type="text" placeholder="Email">
-            <input type="password" placeholder="Senha">
+            <input type="text" placeholder="Email" v-model="email">
+            <input type="password" placeholder="Senha" v-model="password">
           </div>
 
           <div class="cadastreBtns">
-            <button class="cadastrar">Cadastre-se</button>
+            <button @click="registre, $emit('logarUser')" class="cadastrar">Cadastre-se</button>
           </div>
     </div>
   </div>
@@ -38,10 +37,35 @@
     </section>
 </template>
 
-<script>
-export default {
+<script setup>
 
-}
+import { ref } from "vue";
+
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+
+import { useRouter } from 'vue-router';
+
+const email = ref("");
+const password = ref("");
+
+const router = useRouter();
+
+const emit = defineEmits(['logarUser'])
+
+const registre = () => {
+  createUserWithEmailAndPassword( getAuth(), email.value, password.value )
+    .then((data) => {
+      console.log("Sucesso");
+      router.push('/quiz');
+    })
+    .catch((error) => {
+      console.log(error.code);
+      alert(error.message)
+    })
+};
+
+
+  
 </script>
 
 <style scoped>

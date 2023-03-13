@@ -6,7 +6,7 @@ import Login from './components/Login.vue'
 export default {
   data() {
     return {
-      login: false
+      loginA: false
     }
   },
     components: {
@@ -15,20 +15,25 @@ export default {
     },
     mounted () {
       console.log(this.$firebase)
+    },
+    methods: {
+      logarFunc() {
+        this.loginA = true
+      }
     }
 }
 </script>
 
 <template>
 
-<section v-if="login">
+<section v-if="loginA">
   <Cabeçalho/>
 
 <RouterView/>
 
 </section>
 
-<Login v-else/>
+<Login v-else @logar-user="logarFunc"/>
     
   
    
